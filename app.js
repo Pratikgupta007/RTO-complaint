@@ -29,7 +29,17 @@ var urlencodedparser = bodyParser.urlencoded({ extended: false }) // Create a ur
 app.use(express.static("public")); // Serve static files from the "public" directory
 
 app.get("/", function (req, res) {
-    res.send("All good")
+    res.render('index')
+})
+
+
+
+app.get("/registerComplaint", function (req, res) {
+    res.render('registerComplaint')
+})
+
+app.get("/thankyou", function (req, res) {
+    res.render("thankyou.ejs")
 })
 
 app.listen(3000, function () {
