@@ -12,7 +12,6 @@ const app = express();
 const client = new pg.Client("postgres://gkjaxfnx:oMVhwKQJll7h6RqIMGn00nKl4dqvn17v@babar.db.elephantsql.com/gkjaxfnx")
 
 client.connect();
-console.log("Connected to the database!");
 
 // Log a message to the console when the connection is established
 console.log("Connected to the database");
@@ -37,13 +36,13 @@ app.use(session({
 //                      POST Routes
 // ---------------------------------------------------------------
 app.get("/", function (req, res) {
-    client.query("Select * from UserComplaints order by complaint_id desc limit 3", function (err, queryResult) {
+    client.query("Select user_complaint_description from UserComplaints order by complaint_id desc limit 3", function (err, queryResult) {
         if (err) console.log("Database error: " + err);
         else {
-            console.log(queryResult.rows);
+            let complaintResult =  (queryResult.rows);
+            res.render('index', { complaintResult })
         }
     })
-    res.render('index')
 })
 
 
@@ -71,15 +70,28 @@ app.route("/registerComplaint")
             let userCity = req.body.userCity.trim();
             let pincode = req.body.pincode.trim();
             let description = req.body.description.trim();
-            let imageLink = data.link
+            let imageLink = data.link;
 
-            const insertQuery = "Insert into UserComplaints(user_first_name, user_last_name, user_aadhar_number, user_phone_number, user_email, user_state, user_city, user_pincode, user_complaint_description, user_photo_reference) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)";
 
-            // Use the client to execute the query with the provided parameters
-            client.query(insertQuery, [firstName, lastName, aadharNumber, phoneNumber, userEmail, userState, userCity, pincode, description, imageLink], function (err, queryResult) {
-                if (err) console.log("Error" + err);
-                else console.log("Data insertion successfull!");
-            })
+            if (aadharNumber.length != 12 || phoneNumber.length != 10 || pincode.length != 6 || description.length < 50 || userCity.length > 20 || userState.length > 20) {
+                res.send("Enter valid inputs!")
+            } else {
+
+                const insertQuery = "Insert into UserComplaints(user_first_name, user_last_name, user_aadhar_number, user_phone_number, user_email, user_state, user_city, user_pincode, user_complaint_description, user_photo_reference) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)";
+
+                // Use the client to execute the query with the provided parameters
+                client.query(insertQuery, [firstName, lastName, aadharNumber, phoneNumber, userEmail, userState, userCity, pincode, description, imageLink], function (err, queryResult) {
+                    if (err) {
+                        console.log("Error" + err);
+                        res.send("something went wrong!")
+                    }
+                    else {
+                        console.log("Data insertion successfull!");
+                        // res.send("success")
+                        res.render('thankyou')
+                    }
+                })
+            }
 
         });
 
@@ -88,14 +100,14 @@ app.route("/registerComplaint")
 
 // Render Thank you page
 app.get("/thankyou", function (req, res) {
-    res.render("thankyou.ejs")
+    res.render("thankyou")
 })
 
 
 app.get("/admin", function (req, res) {
     if (req.session.authenticated) {
         res.render('/adminView')
-    }else res.render("admin")
+    } else res.render("admin")
 })
 
 
@@ -109,7 +121,6 @@ app.post("/admin", function (req, res) {
             req.session.authenticated = true;
             req.session.adminName = queryResult.rows[0].admin_name;
             let adminName = queryResult.rows[0].admin_name
-
             res.redirect("/adminView")
         }
     })
@@ -120,20 +131,51 @@ app.get("/adminView", function (req, res) {
         res.redirect("/admin")
     } else {
         client.query("Select * from UserComplaints", function (err, queryResult) {
-            if(err){
-                console.log("Database Error: "+ err);
-            }else{
-                if(queryResult.rows.length==0){
+            if (err) {
+                console.log("Database Error: " + err);
+            } else {
+                if (queryResult.rows.length == 0) {
                     res.send("No records found")
-                }else{
+                } else {
                     let complaintResult = queryResult.rows;
-                    res.render("adminView", {complaintResult: complaintResult})
+                    res.render("adminView", { complaintResult: complaintResult })
                 }
             }
         })
     }
 })
 
+
+app.get("/complaints/:postId", function (req, res) {
+    if (!req.session.authenticated) {
+        res.redirect("/admin")
+    } else {
+        // Get the post ID from the route parameters
+        let postId = req.params.postId;
+
+        // Query the database to get the details of the post with the specified ID
+        client.query(
+            "Select * from UserComplaints where complaint_id = $1",
+            [postId],
+            function (err, result) {
+                // Check for errors
+                if (err) {
+                    // If there was an error, send a server error response
+                    res.status(404).render('error');
+                } else {
+                    // Otherwise, render the posts page with the data received from the database
+                    if (result.rows.length != 0) {
+                        let complaintResult = result.rows[0];
+                        // console.log(result);
+                        res.render("posts", { complaintResult });
+                    } else {
+                        res.status(404).render('error');
+                    }
+                }
+            }
+        );
+    }
+});
 
 app.listen(3000, function () {
     console.log("Server is running on port 3000!");
