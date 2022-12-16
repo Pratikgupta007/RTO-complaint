@@ -40,7 +40,6 @@ app.get("/", function (req, res) {
         if (err) console.log("Database error: " + err);
         else {
             let complaintResult =  (queryResult.rows);
-            // console.log(complaintResult);
             res.render('index', { complaintResult })
         }
     })
@@ -122,7 +121,6 @@ app.post("/admin", function (req, res) {
             req.session.authenticated = true;
             req.session.adminName = queryResult.rows[0].admin_name;
             let adminName = queryResult.rows[0].admin_name
-
             res.redirect("/adminView")
         }
     })
