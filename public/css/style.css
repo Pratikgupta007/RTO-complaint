@@ -38,8 +38,8 @@ body{
     margin: auto;
 }
 .navbar span{
-    position: relative;
-    top:25%;
+    /* position: relative; */
+    /* top:25%; */
     color: #fff;
     font-size: 36px;
 }
@@ -211,3 +211,16 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
+
+.table tbody tr td img{
+    max-width: 100px;
+}
+
+.table tbody tr .post img{
+    max-width: 250px;
+}
+
+@media screen and (max-width: 480px) {
+    /* Make the two div elements take up the full width of the screen */
+    
+  }

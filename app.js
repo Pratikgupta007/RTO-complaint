@@ -36,10 +36,11 @@ app.use(session({
 //                      POST Routes
 // ---------------------------------------------------------------
 app.get("/", function (req, res) {
-    client.query("Select * from UserComplaints order by complaint_id desc limit 3", function (err, queryResult) {
+    client.query("Select user_complaint_description from UserComplaints order by complaint_id desc limit 3", function (err, queryResult) {
         if (err) console.log("Database error: " + err);
         else {
             let complaintResult =  (queryResult.rows);
+            // console.log(complaintResult);
             res.render('index', { complaintResult })
         }
     })
@@ -146,6 +147,37 @@ app.get("/adminView", function (req, res) {
     }
 })
 
+
+app.get("/complaints/:postId", function (req, res) {
+    if (!req.session.authenticated) {
+        res.redirect("/admin")
+    } else {
+        // Get the post ID from the route parameters
+        let postId = req.params.postId;
+
+        // Query the database to get the details of the post with the specified ID
+        client.query(
+            "Select * from UserComplaints where complaint_id = $1",
+            [postId],
+            function (err, result) {
+                // Check for errors
+                if (err) {
+                    // If there was an error, send a server error response
+                    res.status(404).render('error');
+                } else {
+                    // Otherwise, render the posts page with the data received from the database
+                    if (result.rows.length != 0) {
+                        let complaintResult = result.rows[0];
+                        // console.log(result);
+                        res.render("posts", { complaintResult });
+                    } else {
+                        res.status(404).render('error');
+                    }
+                }
+            }
+        );
+    }
+});
 
 app.listen(3000, function () {
     console.log("Server is running on port 3000!");

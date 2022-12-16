@@ -1,117 +1,126 @@
 <%- include("partials/header") -%>
   <div class="container">
     <form method="post" enctype="multipart/form-data">
-      <h2>File a Complaint</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="first">First Name</label>
-            <input required name="firstName" type="text" class="form-control" placeholder="Enter First Name here" id="first">
+      <br>
+      <fieldset>
+        <legend>
+          <h2>File a Complaint</h2>
+        </legend>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="first">First Name</label>
+              <input required name="firstName" type="text" class="form-control" placeholder="Enter First Name here"
+                id="first">
+            </div>
           </div>
-        </div>
-        <!--  col-md-6   -->
+          <!--  col-md-6   -->
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="last">Last Name</label>
-            <input required name="lastName" type="text" class="form-control" placeholder="Enter Last Name here" id="last">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="last">Last Name</label>
+              <input required name="lastName" type="text" class="form-control" placeholder="Enter Last Name here"
+                id="last">
+            </div>
           </div>
+          <!--  col-md-6   -->
         </div>
-        <!--  col-md-6   -->
-      </div>
 
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="aadhar">Aadhar Number</label>
-            <input required name="aadharNumber" type="number" class="form-control" placeholder="Enter 12 digit Aadhar Number"
-              minlength="12" maxlength="12" id="aadhar">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="aadhar">Aadhar Number</label>
+              <input required name="aadharNumber" type="number" class="form-control"
+                placeholder="Enter 12 digit Aadhar Number" minlength="12" maxlength="12" id="aadhar">
+            </div>
+
+
           </div>
+          <!--  col-md-6   -->
 
+          <div class="col-md-6">
 
-        </div>
-        <!--  col-md-6   -->
-
-        <div class="col-md-6">
-
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input required name="phoneNumber" type="tel" class="form-control" id="phone" minlength="10" maxlength="10"
-              placeholder="Enter 10 Digit Phone Number">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input required name="phoneNumber" type="tel" class="form-control" id="phone" minlength="10"
+                maxlength="10" placeholder="Enter 10 Digit Phone Number">
+            </div>
           </div>
+          <!--  col-md-6   -->
         </div>
-        <!--  col-md-6   -->
-      </div>
-      <!--  row   -->
+        <!--  row   -->
 
 
-      <div class="row">
-        <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
 
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <input required name="userEmail" type="email" class="form-control" id="email" placeholder="Email">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input required name="userEmail" type="email" class="form-control" id="email" placeholder="Email">
+            </div>
           </div>
-        </div>
-        <!--  col-md-6   -->
+          <!--  col-md-6   -->
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="state">State</label>
-            <input required name="userState" type="text" class="form-control" id="state" placeholder="State">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="state">State</label>
+              <input required name="userState" type="text" class="form-control" id="state" placeholder="State"
+                maxlength="15">
+            </div>
+
           </div>
-
+          <!--  col-md-6   -->
         </div>
-        <!--  col-md-6   -->
-      </div>
 
-      <div class="row">
-        <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
 
-          <div class="form-group">
-            <label for="city">City</label>
-            <input required name="userCity" type="text" class="form-control" id="city" placeholder="City">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input required name="userCity" type="text" class="form-control" id="city" placeholder="City"
+                maxlength="15">
+            </div>
           </div>
-        </div>
-        <!--  col-md-6   -->
+          <!--  col-md-6   -->
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="pincode">PinCode</label>
-            <input required name="pincode" type="number" class="form-control" id="pincode" minlength="6" maxlength="6"
-              placeholder="Pincode">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="pincode">PinCode</label>
+              <input required name="pincode" type="number" class="form-control" id="pincode" minlength="6" maxlength="6"
+                placeholder="Pincode">
+            </div>
+
           </div>
-
+          <!--  col-md-6   -->
         </div>
-        <!--  col-md-6   -->
-      </div>
-      <!--  row   -->
+        <!--  row   -->
 
-      <div class="row">
-        <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
 
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" class="form-control" id="description" minlength="50"
-              placeholder="Describe your complaint in detail" cols="30" rows="4"></textarea>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea name="description" class="form-control" id="description" minlength="50"
+                placeholder="Describe your complaint in detail" cols="30" rows="4" required></textarea>
+            </div>
           </div>
-        </div>
-        <!--  col-md-6   -->
+          <!--  col-md-6   -->
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="url">Upload File</label>
-            <input required name="uploadImage" type="file" class="form-control" id="file" placeholder="State">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="url">Upload File</label>
+              <input required name="uploadImage" type="file" class="form-control" id="file" placeholder="State">
+            </div>
+
           </div>
-
+          <!--  col-md-6   -->
         </div>
-        <!--  col-md-6   -->
-      </div>
-      <!--  row   -->
+        <!--  row   -->
 
 
-      <a href="/thankyou"><button id="submit" type="submit" class="btn btn-primary">Submit</button></a>
+        <a href="/thankyou"><button id="submit" type="submit" class="btn btn-primary">Submit</button></a>
+      </fieldset>
     </form>
   </div>
 
@@ -134,6 +143,7 @@
 
   <script>
     $(document).ready(function () {
+
       function validateNumbers() {
         let flag = false;
         if ($("#aadhar").val().toString().length !== 12) {
@@ -161,7 +171,10 @@
         let flag = false;
         if (!validateInputs()) {
           e.preventDefault();
-        }else if (!validateNumbers()) {
+        } else if (!validateNumbers()) {
+          e.preventDefault();
+        } else if ($('#description').val().length <= 50) {
+          alert("Please provide a deatiled description.")
           e.preventDefault();
         } if (flag) {
           alert(flag)
