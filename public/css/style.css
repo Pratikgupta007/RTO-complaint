@@ -2,83 +2,6 @@ body{
     margin: 0;
     padding: 0;
 }
-/* 
-table{
-    width: 100%;
-    text-align: center;
-}
-.nav-row{
-    width: 100%;
-    max-height: 150px;
-}
- .green-nav{
-    width: 33%;
-    max-height: 100px;
-    background-color: #56873E;
-}
-.white-nav{
-    background-image: url('images/ashoka-chakra.png');
-    background-size:     contain;                      
-    background-repeat:   no-repeat;
-    background-position: center center; 
-    width: 34%;
-    background-color: #fff;
-}
-.orange-nav{
-    width: 33%;
-    background-color: #DC6D01;
-}
-table tr span{
-    font-size: 72px;
-    color: #fff;
-    font-weight: bold;
-    font-family:Arial, Helvetica, sans-serif;
-}
-.mid-section{
-    display: flex;
-    text-align: center;
-    width: auto;
-}
-
-.mid-section .present-title{
-    float: left;
-    padding: auto;
-    text-align: center;
-}
-.mid-section .present-image{
-    float: right;
-}
-table tr td .text1{
-    color:#EDA109;
-    font-size: 100px;
-}
-table tr td .text2{
-    color: #000;
-    font-size: 100px;
-}
-.present{
-    margin: 100px;
-    padding: 25px;
-}
-
-.present-img{
-    height: 750px;
-    width: 450px;
-    transform: scale(1.7) translateY(50px);
-}
-.submit-complaint-button {
-    text-decoration: none;
-    border: 2px solid #56873E;
-    color: #56873E;
-    padding: 18px;
-    font-size: 100px;
-    border-radius: 18px;
-}
-
-tr td a:hover{
-    background-color: #568837;
-    color: #fff;
-} */
 
 
 /* For divs */
@@ -150,7 +73,7 @@ h1{
     position: relative;
     top: 20%;
 }
-a{
+.present-section .present-title a{
     
     position: relative;
     top: 40%;
