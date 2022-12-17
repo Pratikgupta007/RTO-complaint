@@ -39,7 +39,7 @@ app.get("/", function (req, res) {
     client.query("Select user_complaint_description from UserComplaints order by complaint_id desc limit 3", function (err, queryResult) {
         if (err) console.log("Database error: " + err);
         else {
-            let complaintResult =  (queryResult.rows);
+            let complaintResult = (queryResult.rows);
             res.render('index', { complaintResult })
         }
     })
@@ -106,7 +106,7 @@ app.get("/thankyou", function (req, res) {
 
 app.get("/admin", function (req, res) {
     if (req.session.authenticated) {
-        res.render('/adminView')
+        res.redirect('/adminView')
     } else res.render("admin")
 })
 
@@ -118,10 +118,14 @@ app.post("/admin", function (req, res) {
         if (err) {
             console.log("Error in database: " + err);
         } else {
-            req.session.authenticated = true;
-            req.session.adminName = queryResult.rows[0].admin_name;
-            let adminName = queryResult.rows[0].admin_name
-            res.redirect("/adminView")
+            if (queryResult.rows.length != 0) {
+                req.session.authenticated = true;
+                req.session.adminName = queryResult.rows[0].admin_name;
+                let adminName = queryResult.rows[0].admin_name
+                res.redirect("/adminView")
+            }else{
+                res.redirect('/admin')
+            }
         }
     })
 })
@@ -134,12 +138,12 @@ app.get("/adminView", function (req, res) {
             if (err) {
                 console.log("Database Error: " + err);
             } else {
-                if (queryResult.rows.length == 0) {
-                    res.send("No records found")
-                } else {
+                // if (queryResult.rows.length == 0) {
+                //     res.send("No records found")
+                // } else {
                     let complaintResult = queryResult.rows;
                     res.render("adminView", { complaintResult: complaintResult })
-                }
+                // }
             }
         })
     }
@@ -176,6 +180,19 @@ app.get("/complaints/:postId", function (req, res) {
         );
     }
 });
+
+app.get("/logoutAdmin", function (req, res) {
+    req.session.destroy(function (err) {
+        if (err) {
+            // If there was an error, send a server error response
+            res.status(500).send({ success: false, error: err });
+        } else {
+            // Otherwise, send a success response
+            res.status(400).redirect('/admin')
+        }
+    });
+});
+
 
 app.listen(3000, function () {
     console.log("Server is running on port 3000!");
