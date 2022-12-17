@@ -123,7 +123,7 @@ app.post("/admin", function (req, res) {
                 req.session.adminName = queryResult.rows[0].admin_name;
                 let adminName = queryResult.rows[0].admin_name
                 res.redirect("/adminView")
-            }else{
+            } else {
                 res.redirect('/admin')
             }
         }
@@ -141,8 +141,8 @@ app.get("/adminView", function (req, res) {
                 // if (queryResult.rows.length == 0) {
                 //     res.send("No records found")
                 // } else {
-                    let complaintResult = queryResult.rows;
-                    res.render("adminView", { complaintResult: complaintResult })
+                let complaintResult = queryResult.rows;
+                res.render("adminView", { complaintResult: complaintResult })
                 // }
             }
         })
@@ -197,4 +197,3 @@ app.get("/logoutAdmin", function (req, res) {
 app.listen(3000, function () {
     console.log("Server is running on port 3000!");
 });
-
