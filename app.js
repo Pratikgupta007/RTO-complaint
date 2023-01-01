@@ -69,18 +69,18 @@ app.route("/registerComplaint")
             let userState = req.body.userState.trim();
             let userCity = req.body.userCity.trim();
             let pincode = req.body.pincode.trim();
+            let vehicleNumber = req.body.vehicleNumber.trim();
             let description = req.body.description.trim();
             let imageLink = data.link;
-
 
             if (aadharNumber.length != 12 || phoneNumber.length != 10 || pincode.length != 6 || description.length < 50 || userCity.length > 20 || userState.length > 20) {
                 res.send("Enter valid inputs!")
             } else {
 
-                const insertQuery = "Insert into UserComplaints(user_first_name, user_last_name, user_aadhar_number, user_phone_number, user_email, user_state, user_city, user_pincode, user_complaint_description, user_photo_reference) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)";
+                const insertQuery = "Insert into UserComplaints(user_first_name, user_last_name, user_aadhar_number, user_phone_number, user_email, user_state, user_city, user_pincode, user_complaint_description, user_photo_reference, user_vehicle_number) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)";
 
                 // Use the client to execute the query with the provided parameters
-                client.query(insertQuery, [firstName, lastName, aadharNumber, phoneNumber, userEmail, userState, userCity, pincode, description, imageLink], function (err, queryResult) {
+                client.query(insertQuery, [firstName, lastName, aadharNumber, phoneNumber, userEmail, userState, userCity, pincode, description, imageLink, vehicleNumber], function (err, queryResult) {
                     if (err) {
                         console.log("Error" + err);
                         res.send("something went wrong!")
