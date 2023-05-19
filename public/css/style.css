@@ -25,7 +25,7 @@ body{
     background-repeat:   no-repeat;
     background-position: center center; 
     width: 34%;
-    background-color: #fff;
+    background-color: linear-gradient(90deg, rgb(5, 210, 193) 13%, rgb(134,223,213,1) 41%, rgba(134,223,213,1) 88%, rgba(5, 210, 193) 100%);
 }
 .orange-nav{
     width: 33%;
@@ -40,7 +40,7 @@ body{
 .navbar span{
     /* position: relative; */
     /* top:25%; */
-    color: #fff;
+    color: #000000;
     font-size: 36px;
 }
 .present-section{
@@ -49,7 +49,7 @@ body{
     text-align: center;
     justify-content: center;
     background: rgb(99,203,50);
-    background: linear-gradient(90deg, rgba(99,203,50,1) 13%, rgba(171,240,139,1) 41%, rgba(134,223,213,1) 88%, rgba(127,218,211,1) 100%);
+    background: linear-gradient(90deg, rgb(5, 210, 193) 13%, rgb(134,223,213,1) 41%, rgba(134,223,213,1) 88%, rgba(5, 210, 193) 100%);
 }
 
 .present-section .present-title{
@@ -78,15 +78,15 @@ h1{
     position: relative;
     top: 40%;
     padding: 12px 24px;
-    border: 2px solid #DC6D01;
+    border: 2px solid #000000;
     border-radius: 8px;
-    color: #fff;
+    color: #000000;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
 a:hover{
-    color: #fff;
+    color: #ffffff;
     background-color: #DC6D01;
     transition: 0.5s;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -94,7 +94,7 @@ a:hover{
 .present-title span{
     position: relative;
     top: 20%;
-    color: grey;
+    color: rgb(255, 0, 0);
 }
 
 .splide__slide img {
@@ -114,8 +114,8 @@ img {vertical-align: middle;}
 .background-caraousel{
     width: 100%;
     height: 300px;
-    background: rgb(99,203,50);
-    background: linear-gradient(90deg, rgba(99,203,50,1) 13%, rgba(171,240,139,1) 41%, rgba(134,223,213,1) 88%, rgba(127,218,211,1) 100%);
+    background: rgb(51, 39, 159);
+    background: linear-gradient(90deg, rgb(5, 210, 193) 13%, rgb(134,223,213,1) 41%, rgba(134,223,213,1) 88%, rgba(5, 210, 193) 100%);
 }
 .slideshow-container {
   width: 350px;
