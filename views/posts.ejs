@@ -2,11 +2,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="table-responsive">
+            <div class="table-responsive card">
+                <div class="card-header">
+                    Scammer Alert
+                </div>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td class="post"> <img src=<%=complaintResult.user_photo_reference %> alt=""> </td>
+                            <td class="post"> <img src="/images/scam.png" alt=""></td>
                             <td>
                                 <strong>Name:</strong>
                                 <%= complaintResult.user_first_name + " " + complaintResult.user_last_name %>
@@ -23,15 +26,15 @@
                                                 <strong>Pincode:</strong>
                                                 <%= complaintResult.user_pincode %>
                                                 <br>
-                                                <strong>Vehicle Number:</strong>
+                                                <strong>Scammer Phone:</strong>
                                                 <span>
-
-                                                </span>\
-                                            <%= complaintResult.user_vehicle_number %>
+                                                    <%= complaintResult.scammer_phone %>
+                                                </span>
+                                            
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="card-body">
                                 <h4>Complaint Description:</h4>
                                 <p>
                                     <%= complaintResult.user_complaint_description %>

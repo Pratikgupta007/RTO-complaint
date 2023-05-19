@@ -3,13 +3,13 @@
 <div class="text-right">
     <a href="/logoutAdmin"><button class="btn btn-success">Logout</button></a>
 </div>
-        <div class="table-responsive">
+        <div class="table-responsive card m-2">
             <table class="table">
-                <thead>
+                <thead class="card-header">
                     <tr class="post-table">
                         <th>Complaint Id</th>
                         <th>User Name</th>
-                        <th>Post Image</th>
+                        <th>Scammer Phone Number</th>
                         <th>Post Description</th>
                     </tr>
                 </thead>
@@ -24,9 +24,7 @@
 
                             </td>
                             <td>
-                                <img src="<%= complaintResult[i].user_photo_reference %>"
-                                    alt=<%=complaintResult[i].user_first_name %>>
-
+                                <%= complaintResult[i].scammer_phone %>
                             </td>
                             <td>
                                 <%= complaintResult[i].user_complaint_description.substring(0,100) %> <a target="_blank"
